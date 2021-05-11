@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\PersonaFormRequest;
-use App\Vendedores;
+use App\users_config;
+use App\Apo_Institucion_Municipal;
 use illuminate\Support\Collection;
 use Carbon\Carbon;
 use Response;
@@ -19,30 +20,30 @@ class InicioController extends Controller
 
     public function index(Request $request){
 
-        $IdInstitucion = auth()->id();
-        $IdVendedor = 0;
+        $id_user = auth()->id();  
 
-        if($request){
+        if($request){                        
 
-            $IdInstitucion =  auth()->id();
-
-            $institucion = DB::table('Institucion_Municipal')
-            ->where('IdInstitucion','=',$IdInstitucion)
+            $rol = DB::table('users_config')            
+            ->where('Id_User','=',$id_user)
             ->first();
 
-            $contenido = DB::table('Contenido')
-            ->where('IdContenido','=','2')
+            $id_rol = $rol->Id_Rol;
+            
+            $user_contenido = DB::table('users_config')                
+            ->where('Id_User','=',$id_user)                
             ->first();
 
-            $vendedor = DB::table('Vendedores')
-            ->where('IdEstado','=','2')
+            $id_departamento = $user_contenido->Id_Departamento;
+            $id_institucion_municipal = $user_contenido->Id_InstitucionMunicipal;
+
+            $user_institucion = DB::table('apo_Institucion_Municipal')                
+            ->where('Id_Departamento','=',$id_departamento)
+            ->where('Id_InstitucionMunicipal','=',$id_institucion_municipal)
             ->first();
 
-            $IdVendedor = $vendedor->IdVendedor;
-
-            DB::update('pa_Actualizar_IdEstado_Vendedor  ?', array($IdVendedor));
-
-            return view('inicio\inicio',["institucion"=>$institucion, "contenido"=>$contenido, "vendedor"=>$vendedor]);
+            return view('inicio\inicio',["user_contenido"=>$user_contenido, "user_institucion"=>$user_institucion ]);            
+            //return view('inicio\inicio',["institucion"=>$institucion, "contenido"=>$contenido, "vendedor"=>$vendedor]);
             /*return view('inicio\inicio',["institucion"=>$institucion, "contenido"=>$contenido]);*/
 
         }

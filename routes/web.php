@@ -32,6 +32,9 @@ $pdf = PDF::loadView('<h1>Test</h1>');
 Route::get('/{slug?}', 'HomeController@index')->name('home');
 */
 
+//Route::get('/inicio/inicio', 'InicioController@index')->name('inicio.inicio');
+
+//Route::get('/inicio/inicio', 'InicioController@index')->name('inicio.inicio');
 
 Route::resource('afiliado/persona', 'PersonaController');
 Route::resource('afiliado/personainactiva', 'PersonaInactiva');
@@ -40,6 +43,7 @@ Route::resource('planillamensual/importar', 'PlanillaMensualImportController');
 Route::resource('planillamensual/historico', 'PlanillaHistoricoController');
 Route::resource('prestamoplanilla/generar', 'PrestamoPlanillaController');
 Route::resource('inicio/inicio', 'InicioController');
+//Route::resource('inicio/iniciomunicipio', 'InicioController');
 Route::resource('ayuda/index', 'AyudaController');
 
 

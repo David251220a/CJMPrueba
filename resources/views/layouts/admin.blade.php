@@ -50,7 +50,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <small class="bg-red">Online</small>
-                  <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                  <span class="hidden-xs">{{ Auth::user()->name}}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -82,12 +82,12 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
-                    
-          <!-- sidebar menu: : style can be found in sidebar.less -->
+
+          <!-- sidebar menu: : style can be found in sidebar.less -->          
           <ul class="sidebar-menu">
             <li class="header"></li>
             
-            <li class="treeview">
+            <li id="pFuncionario" name="pFuncionario" class="treeview">
               <a href="#">
                 <i class="fa fa-user-o"></i>
                 <span>Funcionario</span>
@@ -99,7 +99,7 @@
               </ul>
             </li>
             
-            <li class="treeview">
+            <li id="pAporte" name="pAporte" class="treeview">
               <a href="#">
                 <i class="fa fa-th"></i>
                 <span>Planillas Mensuales</span>
@@ -111,7 +111,7 @@
                 <li><a href="{{url('planillamensual/historico')}}"><i class="fa fa-circle-o"></i> Historico Planilla</a></li>
               </ul>
             </li>
-            <li class="treeview">
+            <li id="pPrestamo" name="pPrestamo" class="treeview">
               <a href="#">
                 <i class="fa fa-shopping-cart"></i>
                 <span>Prestamo</span>
@@ -121,19 +121,23 @@
                 <li><a href="{{url('prestamoplanilla/generar')}}"><i class="fa fa-circle-o"></i> Generar</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Clientes</a></li>
               </ul>
-            </li>
-                       
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span>Acceso</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-                
-              </ul>
-            </li>
-            <li>
+            </li>          
+
+              <li id="pAcceso" name="pAcceso" class="treeview">
+                <a href="#">
+                  <i class="fa fa-folder"></i> <span>Acceso</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="#"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                  
+                </ul>
+              </li>
+
+         
+            
+            
+            <li id="payuda" name="payuda">
               <a href="{{url('ayuda/index')}}">
                 <i class="fa fa-plus-square"></i> <span>Ayuda</span>
                 
@@ -194,6 +198,7 @@
                                
                                 @yield('contenido')
                                 @yield('scripts')
+                                <input type="hidden" id="prol" name="prol"  value="{{Auth::user()->id_rol}}" class="form-control">
 		                          <!--Fin Contenido-->
                            </div>
                         </div>
@@ -227,4 +232,42 @@
     <script src="{{asset('js/app.min.js')}}"></script>
     
   </body>
+
 </html>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+    ocultar();    
+  
+  });
+
+  function ocultar(){
+
+    var id_rol = document.getElementById("prol").value;
+
+    //console.log(id_rol);
+
+
+    if (id_rol == 2 || id_rol == 3){
+
+      //$("#payuda").show();
+      //$("#payuda").css('visibility','hidden');
+      $("#pAcceso").remove();
+      $("#pFuncionario").remove();
+    }
+
+    //if (id_rol == 2){
+
+      //$("#payuda").hidden();
+      //$("#payuda").css('visibility','hidden');
+      
+    //}
+
+  }
+    
+</script>
+
+
+
