@@ -43,7 +43,7 @@ Route::resource('planillamensual/importar', 'PlanillaMensualImportController');
 Route::resource('planillamensual/historico', 'PlanillaHistoricoController');
 Route::resource('prestamoplanilla/generar', 'PrestamoPlanillaController');
 Route::resource('inicio/inicio', 'InicioController');
-//Route::resource('inicio/iniciomunicipio', 'InicioController');
+Route::resource('rendicionaporte/generar', 'apo_Rendicion_AporteController');
 Route::resource('ayuda/index', 'AyudaController');
 
 

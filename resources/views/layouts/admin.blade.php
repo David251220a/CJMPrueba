@@ -102,13 +102,12 @@
             <li id="pAporte" name="pAporte" class="treeview">
               <a href="#">
                 <i class="fa fa-th"></i>
-                <span>Planillas Mensuales</span>
+                <span>Rendicion de Aportes</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{url('planillamensual/generar')}}"><i class="fa fa-circle-o"></i> Generar Planilla</a></li>
-                <li><a href="{{url('planillamensual/importar')}}"><i class="fa fa-circle-o"></i> Importar Planilla</a></li>
-                <li><a href="{{url('planillamensual/historico')}}"><i class="fa fa-circle-o"></i> Historico Planilla</a></li>
+                <li><a href="{{url('rendicionaporte/generar')}}"><i class="fa fa-circle-o"></i> Generar</a></li>
+                <li><a href="{{url('planillamensual/importar')}}"><i class="fa fa-circle-o"></i> Importar</a></li>                
               </ul>
             </li>
             <li id="pPrestamo" name="pPrestamo" class="treeview">
