@@ -33,7 +33,9 @@ class PlanillaMensualController extends Controller
         if($request){
 
             $planilla = DB::table('Planilla_Mensual_Institucion AS a')
-            ->select('a.*', DB::raw('CONVERT (DATETIME,a.FechaPlanilla,103) AS Fecha'))
+            ->select('a.*'
+            , DB::raw('CONVERT (DATETIME,a.FechaPlanilla,103) AS Fecha')
+            , '')
             ->where('IdInstitucion','=',$IdInstitucion)
             ->where('Estado','=','A')
             ->orderby('IdPlanilla','desc')

@@ -120,7 +120,19 @@
                 <li><a href="{{url('prestamoplanilla/generar')}}"><i class="fa fa-circle-o"></i> Generar</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Clientes</a></li>
               </ul>
-            </li>          
+            </li>                        
+              
+              <li id="pExtracto" name="pAporte" class="treeview">
+                <a href="#">
+                  <i class="fa fa-th"></i>
+                  <span>Constancia Afiliado</span>
+                   <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{{url('constancia/aporte')}}"><i class="fa fa-circle-o"></i> Aporte</a></li>
+                  <li><a href="{{url('constancia/prestamo')}}"><i class="fa fa-circle-o"></i> Prestamo</a></li>                
+                </ul>
+              </li>  
 
               <li id="pAcceso" name="pAcceso" class="treeview">
                 <a href="#">
@@ -133,34 +145,31 @@
                 </ul>
               </li>
 
-         
-            
-            
-            <li id="payuda" name="payuda">
-              <a href="{{url('ayuda/index')}}">
-                <i class="fa fa-plus-square"></i> <span>Ayuda</span>
-                
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-comments-o"></i> <span>Foro</span>
-                
-              </a>
-            </li>
-            <li>
-            <li>
-              <a href="#">
-                <i class="fa fa-thumbs-up"></i> <span>Calificanos</span>
-                
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
-                <small class="label pull-right bg-yellow">IT</small>
-              </a>
-            </li>
+              <li id="payuda" name="payuda">
+                <a href="{{url('ayuda/index')}}">
+                  <i class="fa fa-plus-square"></i> <span>Ayuda</span>
+                  
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-comments-o"></i> <span>Foro</span>
+                  
+                </a>
+              </li>
+              <li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-thumbs-up"></i> <span>Calificanos</span>
+                  
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
+                  <small class="label pull-right bg-yellow">IT</small>
+                </a>
+              </li>
                         
           </ul>
         </section>
@@ -254,8 +263,21 @@
       //$("#payuda").show();
       //$("#payuda").css('visibility','hidden');
       $("#pAcceso").remove();
-      $("#pFuncionario").remove();
+      //$("#pExtracto").remove();
     }
+
+    if (id_rol == 4 || id_rol == 5){
+
+      //$("#payuda").show();
+      //$("#payuda").css('visibility','hidden');
+      $("#pFuncionario").remove();
+      $("#pAporte").remove();
+      $("#pPrestamo").remove();
+      $("#pAcceso").remove();
+    }
+
+
+
 
     //if (id_rol == 2){
 

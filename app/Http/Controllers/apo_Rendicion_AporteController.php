@@ -28,7 +28,7 @@ class apo_Rendicion_AporteController extends Controller
 
         if($request){
             
-            $rol = DB::table('users_config')            
+            $rol = DB::table('users_config')   
             ->where('Id_User','=',$id_user)
             ->first();
 
@@ -38,7 +38,7 @@ class apo_Rendicion_AporteController extends Controller
 
             if ($id_rol != 4 && $id_rol != 5){
             
-                if ($id_rol == 2) {
+                if ($id_rol == 2 || $id_rol == 1) {
                 
                     $rendicion_aporte = DB::table('apo_Rendicion_Aporte AS a')
                     ->join('apo_Situacion AS b','b.Id_Situacion','=','a.Id_Situacion')
@@ -53,7 +53,7 @@ class apo_Rendicion_AporteController extends Controller
                 
                 }
 
-                if ($id_rol == 1 || $id_rol == 3 ) {
+                if ($id_rol == 3 ) {
 
                     $rendicion_aporte = DB::table('apo_Rendicion_Aporte AS a')
                     ->join('apo_Situacion AS b','b.Id_Situacion','=','a.Id_Situacion')
@@ -73,7 +73,7 @@ class apo_Rendicion_AporteController extends Controller
                 
                 }
                 
-            }                
+            } 
 
         }
 
