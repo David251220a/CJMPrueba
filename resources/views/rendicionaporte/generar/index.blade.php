@@ -44,11 +44,11 @@
                     <tr style="vertical-align: middle ; text-align: center">
                         
                         <td>{{date('d-m-Y', strtotime($ren->Fecha_Aporte))}}</td>                                            
-                        <td>{{$ren->Total_Aporte_Personal}}</td>
-                        <td>{{$ren->Total_Aporte_Bonificacion}}</td>
-                        <td>{{$ren->Total_Primera_Asignacion}}</td>
-                        <td>{{$ren->Total_Diferencia_Asignacion}}</td>
-                        <td>{{$ren->Total_RSA}}</td>
+                        <td>{{number_format($ren->Total_Aporte_Personal,0, ".", ".")}}</td>
+                        <td>{{number_format($ren->Total_Aporte_Bonificacion,0, ".", ".")}}</td>
+                        <td>{{number_format($ren->Total_Primera_Asignacion,0, ".", ".")}}</td>
+                        <td>{{number_format($ren->Total_Diferencia_Asignacion,0, ".", ".")}}</td>
+                        <td>{{number_format($ren->Total_RSA,0, ".", ".")}}</td>
                         <td>{{$ren->Desc_Situacion}}</td>
                         <td>
                          

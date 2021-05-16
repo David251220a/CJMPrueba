@@ -6,7 +6,7 @@
 
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
 
-        <h3>Listado de Funcionarios Inactivos </h3>
+        <h3>Listado de Funcionarios Inactivos</h3>
         @include('afiliado.personainactiva.search')
         
     </div>
@@ -28,29 +28,23 @@
                         <th>Numero Documento</th>
                         <th>Nombre</th>
                         <th>Apellido</th>                        
-                        <th>Telefono</th>
-                        <th>Email</th>
+                        <th>N. Celular</th>                        
                         <th>Opciones</th>
 
                     </thead>
-                    {{-- Fin de la cabezera de la table es una fila --}}
-
-                    {{-- Realiza el bucle para mostrar todos los registro que
-                        traer el controla categoria y crea y almacena las filas --}}
-                    
-                    @foreach ($persona as $per)
+                                        
+                    @foreach ($afiliado as $afi)
                     <tr>
 
-                        <td>{{$per->cedula}}</td>
-                        <td>{{$per->nombre}}</td>
-                        <td>{{$per->apellido}}</td>                    
-                        <td>{{$per->telefono}}</td>
-                        <td>{{$per->email}}</td>
-                        <td>
-                            <a href="" data-target="#modal-delete-{{$per->idpersona}}" data-toggle="modal">
-                                <button class="btn btn-info">Activar</button>
-                           </a>
-
+                        <td>{{$afi->Documento}}</td>
+                        <td>{{$afi->Nombre}}</td>
+                        <td>{{$afi->Apellido}}</td>                    
+                        <td>{{$afi->Celular}}</td>                        
+                        <td>                                                       
+                        <a href="" data-target="#modal-delete-{{$afi->Id_Afiliado_Insitucion}}" data-toggle="modal">
+                            <button class="btn btn-success">Activar</button>
+                        </a>
+                           
                         </td>
                     </tr>
 
@@ -62,7 +56,7 @@
 
             </div>
 
-            {{$persona -> render()}}
+            {{$afiliado -> render()}}
 
         </div>
 

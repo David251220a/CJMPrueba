@@ -30,21 +30,24 @@ class InicioController extends Controller
 
             $id_rol = $rol->Id_Rol;
             
-            $user_contenido = DB::table('users_config')                
-            ->where('Id_User','=',$id_user)                
-            ->first();
+            if($id_rol == 1){
+                 
+                return redirect('afiliado/persona');
 
-            $id_departamento = $user_contenido->Id_Departamento;
-            $id_institucion_municipal = $user_contenido->Id_InstitucionMunicipal;
+            }
 
-            $user_institucion = DB::table('apo_Institucion_Municipal')                
-            ->where('Id_Departamento','=',$id_departamento)
-            ->where('Id_InstitucionMunicipal','=',$id_institucion_municipal)
-            ->first();
+            if($id_rol == 2){
+                 
+                return redirect('rendicionaporte/generar');
 
-            return view('inicio\inicio',["user_contenido"=>$user_contenido, "user_institucion"=>$user_institucion ]);            
-            //return view('inicio\inicio',["institucion"=>$institucion, "contenido"=>$contenido, "vendedor"=>$vendedor]);
-            /*return view('inicio\inicio',["institucion"=>$institucion, "contenido"=>$contenido]);*/
+            }
+
+            if($id_rol == 3 || $id_rol == 4 ){
+                 
+                return redirect('resumen/aporte');
+
+            }
+            
 
         }
 

@@ -120,7 +120,19 @@
                 <li><a href="{{url('prestamoplanilla/generar')}}"><i class="fa fa-circle-o"></i> Generar</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Clientes</a></li>
               </ul>
-            </li>                        
+            </li> 
+            
+            <li id="pResumen" name="pResumen" class="treeview">
+              <a href="#">
+                <i class="fa fa-th"></i>
+                <span>Resumen</span>
+                 <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{url('resumen/aporte')}}"><i class="fa fa-circle-o"></i>Cobro Aporte</a></li>
+                <li><a href="{{url('resumen/prestamo')}}"><i class="fa fa-circle-o"></i>Cobro Prestamo</a></li>                
+              </ul>
+            </li>                      
               
               <li id="pExtracto" name="pAporte" class="treeview">
                 <a href="#">
@@ -258,18 +270,34 @@
     //console.log(id_rol);
 
 
-    if (id_rol == 2 || id_rol == 3){
-
-      //$("#payuda").show();
-      //$("#payuda").css('visibility','hidden');
+    if (id_rol == 2){
+      
+      $("#pResumen").remove();
+      $("#pExtracto").remove();
       $("#pAcceso").remove();
-      //$("#pExtracto").remove();
+
     }
 
-    if (id_rol == 4 || id_rol == 5){
+    if (id_rol == 3){
+      
+      $("#pFuncionario").remove();
+      $("#pAporte").remove();
+      $("#pPrestamo").remove();
+      $("#pAcceso").remove();
 
-      //$("#payuda").show();
-      //$("#payuda").css('visibility','hidden');
+    }
+
+    if (id_rol == 4){
+
+      $("#pFuncionario").remove();
+      $("#pAporte").remove();
+      $("#pPrestamo").remove();
+      $("#pAcceso").remove();
+    }
+    
+    if (id_rol == 5){
+
+      $("#pExtracto").remove();
       $("#pFuncionario").remove();
       $("#pAporte").remove();
       $("#pPrestamo").remove();
@@ -278,13 +306,6 @@
 
 
 
-
-    //if (id_rol == 2){
-
-      //$("#payuda").hidden();
-      //$("#payuda").css('visibility','hidden');
-      
-    //}
 
   }
     

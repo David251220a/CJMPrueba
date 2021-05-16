@@ -13,10 +13,10 @@ class Apo_Afiliado_Inst_Munic extends Model
 
     public $timestamps= false;
 
-    //protected $primarykey='Id_InstitucionMunicipal';
+    protected $primarykey='Id_Afiliado_Institucion';
 
 
-    //public function getKeyName(){
-    //    return "Id_InstitucionMunicipal";
-    //}
+    public function getKeyName(){
+        return "Id_Afiliado_Institucion";
+    }
 }

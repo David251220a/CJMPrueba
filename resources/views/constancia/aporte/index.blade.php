@@ -12,6 +12,20 @@
     </div>
 
 </div>
+<br>
+<div class="rows">
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+
+        @if (session()->has('msj'))
+        <div class="alert alert-info" role="alert">{{session('msj')}}</div>
+        @else
+        <div class="alert alert-info"  role="alert" style="display:none;">{{session('msj')}}</div>
+        @endif                
+    </div>
+
+</div>
+
 
 
 @endsection

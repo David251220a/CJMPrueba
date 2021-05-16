@@ -60,12 +60,12 @@
                 
                 <thead>
                     
-                    <th>Fecha Ultimo Aporte</th>                                                
-                    <th>Total Aporte Personal</th>                    
-                    <th>Total Primera Asig.</th>
-                    <th>Total Diferencia Asig.</th>
-                    <th>Total RSA</th>                    
-                    <th>Antiguedad</th>                    
+                    <th style="text-align: center">Fecha Ultimo Aporte</th>                                                
+                    <th style="text-align: center">Total Aporte Personal</th>                    
+                    <th style="text-align: center">Total Primera Asig.</th>
+                    <th style="text-align: center">Total Diferencia Asig.</th>
+                    <th style="text-align: center">Total RSA</th>                    
+                    <th style="text-align: center">Antiguedad</th>                    
 
                 </thead>
                 {{-- Fin de la cabezera de la table es una fila --}}
@@ -121,12 +121,12 @@
                 
                 <thead>
                     
-                    <th>Fecha Aporte</th>                                                
-                    <th>Aporte Personal</th>                    
-                    <th>Primera Asig.</th>
-                    <th>Diferencia Asig.</th>
-                    <th>RSA</th>
-                    <th>Tipo Operacion</th>                    
+                    <th style="text-align: center">Fecha Aporte</th>                                                
+                    <th style="text-align: center">Aporte Personal</th>                    
+                    <th style="text-align: center">Primera Asig.</th>
+                    <th style="text-align: center">Diferencia Asig.</th>
+                    <th style="text-align: center">RSA</th>
+                    <th style="text-align: center">Tipo Operacion</th>                    
 
                 </thead>
                 {{-- Fin de la cabezera de la table es una fila --}}
@@ -137,7 +137,7 @@
                 @foreach ($afiliado_constancia as $cons)
                     <tr style="vertical-align: middle ; text-align: center">
                                 
-                        <td>{{date('d-m-Y', strtotime($cons->Fecha_Aporte))}}</td>                                            
+                        <td>{{date('d-m-Y', strtotime($cons->Fecha_Aporte))}}</td>                                          
                         <td>{{number_format($cons->Aporte_Personal,0, ".", ".")}}</td>                    
                         <td>{{number_format($cons->Primera_Asignacion,0, ".", ".")}}</td>
                         <td>{{number_format($cons->Diferencia_Asignacion,0, ".", ".")}}</td>

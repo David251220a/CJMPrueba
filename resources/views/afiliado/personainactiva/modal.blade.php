@@ -1,7 +1,7 @@
 <div class="modal fade modal-slide-in-right" aria-hidden="true"
-    role="dialog" tabindex="-1" id="modal-delete-{{$per->idpersona}}">
+    role="dialog" tabindex="-1" id="modal-delete-{{$afi->Id_Afiliado_Insitucion}}">
 
-    {!! Form::open(array('action'=> array('PersonaInactiva@destroy', $per->idpersona), 'method'=>'delete' ) ) !!}
+    {!! Form::open(array('action'=> array('apo_Afiliado_Inst_Munic_Inactivo_Controller@destroy', $afi->Id_Afiliado_Insitucion), 'method'=>'delete' ) ) !!}
 
     <div class="modal-dialog">
         
@@ -16,13 +16,13 @@
 
                 </button>
 
-                <h4 class="modal-title">Activar Funcionario</h4>
+                <h4 class="modal-title">Desea incluir Funcionario al listado de Activo?</h4>
 
             </div>
 
             <div class="modale-body">
 
-                <p>Confirme si desea Activar Afiliado</p>
+                <p>Confirme si desea incluir Funcionario</p>
 
 
             </div>

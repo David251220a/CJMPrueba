@@ -27,6 +27,20 @@
 
     </div>
 
+    <div class="rows">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            @if (session()->has('msj'))
+            
+            <div class="alert alert-danger" role="alert">{{session('msj')}}</div>
+            
+            @else
+                
+            @endif
+        </div>
+    </div>
+
+
     {!! Form::open(array('url'=>'afiliado/persona', 'method'=>'POST', 'autocomplete'=>'off'))!!}
     {{Form::token()}}
 
@@ -37,7 +51,7 @@
             <div class="form-group">
 
                 <label for="cedula" >Numero de Cedula</label>
-                <input type="text" name="cedula" required value="{{old('cedula')}}" class="form-control" placeholder="Numero de Cedula..">
+                <input type="number" name="cedula" required value="{{old('cedula')}}" class="form-control" placeholder="Numero de Cedula..">
 
             </div>
 
@@ -297,8 +311,7 @@
 
 
         function agregar() {
-
-            var opcion = document.getElementById("ptipo_aporte");                        
+                            
             var salario = document.getElementById("psalario").value;
             var salario_bonificacion = document.getElementById("psalario_bonficacion").value;
             var aporte_salario = Math.round(((salario * 10) /100));

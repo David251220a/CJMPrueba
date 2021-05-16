@@ -32,24 +32,24 @@ class apo_AporteController extends Controller
             $id_departamento = $rol->Id_Departamento;
             $id_institucion_municipal = $rol->Id_InstitucionMunicipal;                        
 
-            if ($id_rol != 4 || $id_rol != 1){
+            if ($id_rol != 4 || $id_rol != 1 && $id_rol != 3){
                 
                 $query=trim($request->get('searchtext'));
             
                 $cant_cadena = strlen($query);
 
-                $afiliado = DB::table('leg_Afiliado')   
+                $afiliado = DB::table('leg_Afiliado')
                 ->where('Documento','=',$query)
                 ->first();
 
                 $id_legajo = 0;
 
-                if ($cant_cadena >= 6){
+                if ($cant_cadena >= 5){
                     
                     if (empty($afiliado->Documento)) {
                         
-                        $query="";
-                        return view('constancia\aporte.index', ["searchtext"=>$query]);
+                        $query="";                        
+                        return back()->with('msj', 'No existe Afiliado');
 
                     }else{
                     
@@ -66,7 +66,7 @@ class apo_AporteController extends Controller
 
                         return view('constancia\aporte.show', ["afiliado"=>$afiliado
                         , "afiliado_constancia"=>$afiliado_constancia
-                        , "afiliado_cabezera"=>$afiliado_cabezera]);                        
+                        , "afiliado_cabezera"=>$afiliado_cabezera]);
 
                     }
 

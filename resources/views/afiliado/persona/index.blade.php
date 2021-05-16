@@ -32,11 +32,7 @@
                         <th>Opciones</th>
 
                     </thead>
-                    {{-- Fin de la cabezera de la table es una fila --}}
-
-                    {{-- Realiza el bucle para mostrar todos los registro que
-                        traer el controla categoria y crea y almacena las filas --}}
-                    
+                                        
                     @foreach ($afiliado as $afi)
                     <tr>
 
@@ -45,18 +41,18 @@
                         <td>{{$afi->Apellido}}</td>                    
                         <td>{{$afi->Celular}}</td>                        
                         <td>
-                            <a href="#">
+                            <a href="{{URL::action('apo_Afiliado_Inst_MunicController@edit', $afi->Id_Legajo)}}">
                                  <button class="btn btn-info">Editar</button>
                             </a>
-                            {{--
-                            <a href="" data-target="#modal-delete-{{$afi->idpersona}}" data-toggle="modal">
-                                <button class="btn btn-danger">Borrar</button>
-                           </a>
-                           --}}
+                           
+                        <a href="" data-target="#modal-delete-{{$afi->Id_Afiliado_Institucion}}" data-toggle="modal">
+                            <button class="btn btn-danger">Borrar</button>
+                        </a>
+                           
                         </td>
                     </tr>
 
-                   {{-- @include('afiliado.persona.modal') --}}
+                    @include('afiliado.persona.modal')
 
                     @endforeach
                     
