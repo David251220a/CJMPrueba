@@ -2,6 +2,29 @@
 
 @section('contenido')
 
+
+@php  $total_Aporte_Salario = 0 @endphp
+@php  $total_Aporte_Bonificacion = 0 @endphp
+@php  $totalPrimeraAsif = 0 @endphp
+@php  $totalDiferenciaAsif = 0 @endphp
+@php  $totalRSA = 0 @endphp
+@php  $cantidad = 0 @endphp
+@php  $Total_General = 0 @endphp
+
+
+@foreach ($rendicion as $ren)
+
+    @php $total_Aporte_Salario += $ren->Aporte_Salario  @endphp
+    @php $total_Aporte_Bonificacion += $ren->Aporte_Salario_Bonificacion  @endphp
+    @php $totalDiferenciaAsif += $ren->Diferencia_Asignacion  @endphp
+    @php $totalPrimeraAsif += $ren->Primera_Asignacion  @endphp
+    @php $totalRSA += $ren->RSA  @endphp
+    @php $cantidad +=  1  @endphp    
+
+@endforeach
+
+@php $Total_General = $total_Aporte_Salario + $total_Aporte_Bonificacion + $totalDiferenciaAsif + $totalPrimeraAsif +$totalRSA @endphp
+
     <div class="row">
         
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -12,11 +35,11 @@
                 <div class="alert alert-danger">
                     
                 <ul>
-                  @foreach ($errors->all() as $error)
+                    @foreach ($errors->all() as $error)
 
                     <li>{{$error}}</li>
-                      
-                  @endforeach  
+                        
+                    @endforeach  
                 </ul>
 
                 </div>
@@ -46,14 +69,14 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="guardar">
 
         <div class="form-group">
-            <a href="{{URL::action('PersonaController@index')}}"><button style='width:145px; height:50'  class="btn btn-info">Editar Afiliados</button></a>
+            <a href="{{URL::action('apo_Afiliado_Inst_MunicController@index')}}"><button style='width:145px; height:50'  class="btn btn-info">Editar Afiliados</button></a>
         </div>
 
         </div>    
 
     </div>
 
-    {!! Form::open(array('url'=>'planillamensual/generar', 'method'=>'POST', 'autocomplete'=>'off'))!!}
+    {!! Form::open(array('url'=>'rendicionaporte/generar', 'method'=>'POST', 'autocomplete'=>'off'))!!}
     {{Form::token()}}
 
     <div class="row">
@@ -69,136 +92,94 @@
 
         </div>    
 
-    </div>
-
-    @php  $totalAporte = 0 @endphp
-    @php  $totalBonificacion = 0 @endphp
-    @php  $TotalAportesinBonificacion = 0 @endphp
-    @php  $totalDiferenciaAsif = 0 @endphp
-    @php  $totalPrimeraAsif = 0 @endphp
-    @php  $totalRSA = 0 @endphp
-    @php  $cantidad = 0 @endphp
-    @php  $Total_General = 0 @endphp
-    
-    
-    @foreach ($afiliado as $afi)
-
-        @php $totalAporte += $afi->Aporte  @endphp
-        @php $totalDiferenciaAsif += $afi->Diferencia_Asignacion  @endphp
-        @php $totalPrimeraAsif += $afi->Primera_Asignacion  @endphp
-        @php $totalRSA += $afi->RSA  @endphp
-        @php $cantidad +=  1  @endphp
-        @php $Total_General += ($afi->Aporte + $afi->Diferencia_Asignacion + $afi->Primera_Asignacion +$afi->RSA) @endphp
-        @if ($afi->IdTipo_Aporte == 1)
-            
-
-            @php $TotalAportesinBonificacion += $afi->Aporte  @endphp
-
-        @else
-            
-            @php $totalBonificacion += $afi->Aporte  @endphp
-
-        @endif
-    
-    @endforeach
+    </div>    
 
     <div class="row">
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 
             <div class="form-group">
 
                 <label for="fecha" >Fecha de Planilla </label>
-                <input type="date" name="fecha" class="form-control" value="2020-01-31">
+                <input style="text-align:right;" type="date" name="fecha" class="form-control" value="2020-01-31">
 
 
             </div>
             
         </div>
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 
             <div class="form-group">
 
                 <label for="cantidad" >Cantidad de Afiliados</label>
-                <input type="text" name="cantidad" value="{{$persona->cantidad}}" class="form-control" readonly>
+                <input style="text-align:right;" type="text" name="cantidad" value="{{number_format($cantidad, 0, ".", ".")}}" class="form-control" readonly>
 
             </div>
             
         </div>
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 
             <div class="form-group">
 
-                <label for="total_aporte" >Total Aporte </label>
-                <input type="text" name="total_aporte" value="{{$totalAporte}}" class="form-control" readonly >
+                <label for="total_aporte" >Total Aporte Salario </label>
+                <input style="text-align:right;" type="text" name="total_aporte" value="{{number_format($total_Aporte_Salario, 0, ".", ".")}}" class="form-control" readonly >
 
             </div>
             
         </div>
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 
             <div class="form-group">
 
-                <label for="total_primera_asig" >Total Primera Asignacion </label>
-                <input type="text" name="total_primera_asig" value="{{$totalPrimeraAsif}}" class="form-control" readonly >
+                <label for="total_aporte" >Total Aporte Bonif. </label>
+                <input style="text-align:right;" type="text" name="total_aporte" value="{{number_format($total_Aporte_Bonificacion, 0, ".", ".")}}" class="form-control" readonly >
 
             </div>
             
         </div>
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 
             <div class="form-group">
 
-                <label for="total_diferencia_asig" >Total Diferencia Asignacion </label>
-                <input type="text" name="total_diferencia_asig"  value="{{$totalDiferenciaAsif}}" class="form-control" readonly >
+                <label for="total_primera_asig" >Total Primera Asig. </label>
+                <input style="text-align:right;" type="text" name="total_primera_asig" value="{{number_format($totalPrimeraAsif, 0, ".", ".")}}" class="form-control" readonly >
 
             </div>
             
         </div>
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
+
+            <div class="form-group">
+
+                <label for="total_diferencia_asig" >Total Diferencia Asig. </label>
+                <input style="text-align:right;" type="text" name="total_diferencia_asig"  value="{{number_format($totalDiferenciaAsif, 0, ".", ".")}}" class="form-control" readonly >
+
+            </div>
+            
+        </div>
+
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 
             <div class="form-group">
 
                 <label for="total_rsa" >Total R.S.A. </label>
-                <input type="text" name="total_rsa"  value="{{$totalRSA}}" class="form-control" readonly>
+                <input style="text-align:right;" type="text" name="total_rsa"  value="{{number_format($totalRSA, 0, ".", ".")}}" class="form-control" readonly>
 
             </div>
             
-        </div>
+        </div>        
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-
-                <label for="total_aporte_sinboni" >Total Aporte sin Bonificacion </label>
-                <input type="text" name="total_aporte_sinboni" value="{{$TotalAportesinBonificacion}}" class="form-control" readonly>
-
-            </div>
-            
-        </div>
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-
-                <label for="total_bonificacion" >Total Bonificacion </label>
-                <input type="text" name="total_bonificacion" value="{{$totalBonificacion}}" class="form-control" readonly >
-
-            </div>
-            
-        </div>
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 
             <div class="form-group">
 
                 <label for="total_general" >Total General </label>
-                <input type="number" name="total_general" class="form-control" value="{{$Total_General}}" readonly>
+                <input style="text-align:right;" type="text" name="total_general" class="form-control" value="{{number_format($Total_General, 0, ".", ".")}}" readonly>
 
 
             </div>
@@ -217,53 +198,53 @@
 
                     {{-- Cabecera de la tabla --}}
                     
-                    <thead>
+                    <thead style="background-color:#A9D0F5">
 
-                        <th  hidden> Idpersona</th>
+                        <th  hidden></th>
                         <th>Cedula de Identidad</th>
-                        <th>Nombre</th>                        
-                        <th>Apellido</th>
-                        <th>Tipo de Aporte</th>
+                        <th>Nombre y Apellido</th>                                                                 
                         <th>Salario</th>
-                        <th>Aporte</th>
+                        <th>Salario Bonificacion</th>                        
+                        <th>Aporte Salario</th>
+                        <th>Aporte Bonficacion</th>
                         <th>Primera Asig</th>
                         <th>Diferencia Asig</th>
-                        <th>RSA</th>
-                      
+                        <th>RSA</th>                      
 
-                    </thead>
-                    {{-- Fin de la cabezera de la table es una fila --}}
-
-                    {{-- Realiza el bucle para mostrar todos los registro que
-                        traer el controla categoria y crea y almacena las filas --}}
+                    </thead>                    
+                    
+                    <tbody id="developers">
                         @php
                         $cont = 0;
                         @endphp
-                    @foreach ($afiliado as $afi)
-                        <tr class="select" id="fila{{$cont}}" >
-                            <td hidden><input type="hidden" id="idpersona" name="idpersona[]" value="{{$afi->idpersona}}" > </td>
-                            <td><input type="text" id="cedula" name="cedula[]" value="{{$afi->cedula}}" readonly></td>
-                            <td><input type="text" id="nombre" name="nombre[]" value="{{$afi->nombre}}" readonly></td>                    
-                            <td><input type="text"  id="apellido" name="apellido[]" value="{{$afi->apellido}}" readonly></td>
-                            <td><input type="hidden" name="idtipo_aporte[]" value="{{$afi->IdTipo_Aporte}}" >{{$afi->Descripcion}}</td>
-                            <td><input type="number" id="salario" name="salario[]" value="{{$afi->Salario}}" readonly></td>
-                            <td><input type="number" id="aporte" name="aporte[]" value="{{$afi->Aporte}}" readonly></td>
-                            <td><input type="number" id="primera_asig" name="primera_asig[]"  value="{{$afi->Primera_Asignacion}}" readonly></td>
-                            <td><input type="number" id="diferencia_asig" name="diferencia_asig[]"  value="{{$afi->Diferencia_Asignacion}}" readonly></td>
-                            <td><input type="number" id="rsa" name="rsa[]" value="{{$afi->RSA}}" readonly></td>
-                            
-                        </tr>
-                        @php
-                        $cont++;
-                        @endphp
-                        <input id="cont" name="cont" value="{{$cont}}" type="hidden"></td>
-                    @endforeach
-                    
+                        @foreach ($rendicion as $ren)
+                            <tr class="select" id="fila{{$cont}}" >
+                                <td hidden><input type="hidden" id="idpersona" name="idpersona[]" value="{{$ren->Id_Afiliado_Institucion}}" > </td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="text" id="cedula" name="cedula[]" value="{{$ren->Documento}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="text" id="nombre" name="nombre_apellido[]" value="{{$ren->Nombre}} , {{$ren->Apellido}}" readonly></td>                                                        
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="salario" name="salario[]" value="{{$ren->Salario}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="salario_bonificacion" name="salario_bonificacion[]" value="{{$ren->Salario_Bonificacion}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="aporte_salario" name="aporte_salario[]" value="{{$ren->Aporte_Salario}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="aporte_bonificacion" name="aporte_bonificacion[]" value="{{$ren->Aporte_Salario_Bonificacion}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="primera_asig" name="primera_asig[]"  value="{{$ren->Primera_Asignacion}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="diferencia_asig" name="diferencia_asig[]"  value="{{$ren->Diferencia_Asignacion}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="rsa" name="rsa[]" value="{{$ren->RSA}}" readonly></td>
+                                
+                            </tr>
+                            @php
+                            $cont++;
+                            @endphp
+                            <input id="cont" name="cont" value="{{$cont}}" type="hidden"></td>
+                        @endforeach
+                    </tbody>
+                    <div class="col-md-12 text-center">
+                        <ul class="pagination pagination-lg pager" id="developer_page"></ul>
+                        </div>
                     
                 </table>
 
             </div>
-
+            
 
         </div>
 
@@ -271,6 +252,22 @@
    
     
     {!! Form::close() !!}
+    @push('scripts')
 
-   
+    <script type="text/javascript">
+    
+        $(document).ready(function() {
+            $('#developers').pageMe({
+                pagerSelector: '#developer_page',
+                showPrevNext: true,
+                hidePageNumbers: false,
+                perPage: 1
+            });
+        });
+ 
+
+    </script>
+
+    @endpush
+
 @endsection

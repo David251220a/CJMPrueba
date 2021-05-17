@@ -6,9 +6,8 @@
 
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
 
-        <h3>Rendición de Aportes Realizadas <a href="#"> <button class="btn btn-success"> Nueva Rendicion </button></a></h3>
-        
-        
+        <h3>Rendición de Aportes Realizadas <a href="generar/create"> <button class="btn btn-success"> Nueva Rendicion </button></a></h3>
+                
     </div>
 
 </div>

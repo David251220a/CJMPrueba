@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins

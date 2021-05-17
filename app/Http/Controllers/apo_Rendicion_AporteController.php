@@ -35,45 +35,61 @@ class apo_Rendicion_AporteController extends Controller
             $id_rol = $rol->Id_Rol;
             $id_departamento = $rol->Id_Departamento;
             $id_institucion_municipal = $rol->Id_InstitucionMunicipal;
-
-            if ($id_rol != 4 && $id_rol != 5){
             
-                if ($id_rol == 2 || $id_rol == 1) {
+            
+            if ($id_rol == 2 || $id_rol == 1) {
+            
+                $rendicion_aporte = DB::table('apo_Rendicion_Aporte AS a')
+                ->join('apo_Situacion AS b','b.Id_Situacion','=','a.Id_Situacion')
+                ->select('a.*', 'b.Desc_Situacion')
+                ->where('a.Id_Departamento','=',$id_departamento)
+                ->where('a.Id_InstitucionMunicipal','=',$id_institucion_municipal)
+                ->where('a.Estado','=','A')
+                ->orderby('Fecha_Aporte','desc')
+                ->paginate(7);
                 
-                    $rendicion_aporte = DB::table('apo_Rendicion_Aporte AS a')
-                    ->join('apo_Situacion AS b','b.Id_Situacion','=','a.Id_Situacion')
-                    ->select('a.*', 'b.Desc_Situacion')
-                    ->where('a.Id_Departamento','=',$id_departamento)
-                    ->where('a.Id_InstitucionMunicipal','=',$id_institucion_municipal)
-                    ->where('a.Estado','=','A')
-                    ->orderby('Fecha_Aporte','desc')
-                    ->paginate(7);
-                    
-                    return view('rendicionaporte\generar.index',["rendicion_aporte"=>$rendicion_aporte]);
-                
-                }
+                return view('rendicionaporte\generar.index',["rendicion_aporte"=>$rendicion_aporte]);
+            
+            }else{
 
-                if ($id_rol == 3 ) {
+                return redirect('inicio/inicio');
 
-                    $rendicion_aporte = DB::table('apo_Rendicion_Aporte AS a')
-                    ->join('apo_Situacion AS b','b.Id_Situacion','=','a.Id_Situacion')
-                    ->select('a.*', 'b.Desc_Situacion')
-                    ->where('a.Id_Departamento','=',$id_departamento)                    
-                    ->where('a.Estado','=','A')
-                    ->orderby('Fecha_Aporte','desc')
-                    ->paginate(7);
-                    
-                    return view('rendicionaporte\generar.index',["rendicion_aporte"=>$rendicion_aporte]);
-                
-                }
+            }                            
 
-                if ($id_rol == 4 || $id_rol == 5) {                   
-                    
-                    return redirect('inicio/inicio');
-                
-                }
-                
-            } 
+        }
+
+    }
+
+    public function create(){
+
+        $id_user = auth()->id();
+
+        $rol = DB::table('users_config')   
+        ->where('Id_User','=',$id_user)
+        ->first();
+
+        $id_rol = $rol->Id_Rol;
+        $id_departamento = $rol->Id_Departamento;
+        $id_institucion_municipal = $rol->Id_InstitucionMunicipal;
+
+        if ($id_rol == 2 || $id_rol == 1) {
+
+            $rendicion = DB::table('apo_Afiliado_Inst_Munic AS a')
+            ->join('leg_Afiliado AS b','b.Id_Legajo','=','a.Id_Legajo')
+            ->select('a.*'
+            , 'b.Documento'
+            , 'b.Nombre'
+            , 'b.Apellido')            
+            ->where('a.Id_Departamento', '=', $id_departamento)
+            ->where('a.Id_InstitucionMunicipal', '=', $id_institucion_municipal)
+            ->where('a.Id_Afiliado_Tipo', '=', 1)
+            ->get();
+
+            return view('rendicionaporte\generar.create',["rendicion"=>$rendicion]);
+
+        }else{
+
+            return redirect('inicio/inicio');
 
         }
 
