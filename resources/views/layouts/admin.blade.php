@@ -8,9 +8,20 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}">
-    <!-- Font Awesome -->
+   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+   <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}"> 
+   <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+   <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js" defer></script>
+
+   <!--<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+   <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js" defer></script>
+   <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
+   
+   <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css" rel="stylesheet"/>-->
+   <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+   <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
     
     <!-- Theme style -->
@@ -98,6 +109,17 @@
                 <li><a href="{{url('afiliado/personainactiva')}}"><i class="fa fa-circle-o"></i> Personas Inactivas</a></li>
               </ul>
             </li>
+
+            <li id="pAfiliado" name="pAfiliado" class="treeview">
+              <a href="#">
+                <i class="fa fa-user-o"></i>
+                <span>Afiliado</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{url('afiliado/capacidad')}}"><i class="fa fa-circle-o"></i>Capacidad de Pago</a></li>                
+              </ul>
+            </li>
             
             <li id="pAporte" name="pAporte" class="treeview">
               <a href="#">
@@ -107,7 +129,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{url('rendicionaporte/generar')}}"><i class="fa fa-circle-o"></i> Generar</a></li>
-                <li><a href="{{url('planillamensual/importar')}}"><i class="fa fa-circle-o"></i> Importar</a></li>                
+                <li><a href="{{url('rendicionaporte/importar')}}"><i class="fa fa-circle-o"></i> Importar</a></li>                
               </ul>
             </li>
             <li id="pPrestamo" name="pPrestamo" class="treeview">
@@ -244,10 +266,14 @@
     <!-- jQuery 2.1.4 -->
    
     <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
+    <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
     @stack('scripts')
     <!-- Bootstrap 3.3.5 -->
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
+    
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
     
@@ -272,6 +298,7 @@
 
     if (id_rol == 2){
       
+      $("#pAfiliado").remove();
       $("#pResumen").remove();
       $("#pExtracto").remove();
       $("#pAcceso").remove();
@@ -280,6 +307,7 @@
 
     if (id_rol == 3){
       
+      $("#pAfiliado").remove();
       $("#pFuncionario").remove();
       $("#pAporte").remove();
       $("#pPrestamo").remove();
@@ -289,6 +317,7 @@
 
     if (id_rol == 4){
 
+      $("#pAfiliado").remove();
       $("#pFuncionario").remove();
       $("#pAporte").remove();
       $("#pPrestamo").remove();
@@ -297,6 +326,17 @@
     
     if (id_rol == 5){
 
+      $("#pAfiliado").remove();
+      $("#pExtracto").remove();
+      $("#pFuncionario").remove();
+      $("#pAporte").remove();
+      $("#pPrestamo").remove();
+      $("#pAcceso").remove();
+    }
+
+    if (id_rol == 6){
+
+      $("#pResumen").remove();
       $("#pExtracto").remove();
       $("#pFuncionario").remove();
       $("#pAporte").remove();

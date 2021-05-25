@@ -55,7 +55,7 @@
                                 <button class="btn btn-info">PDF</button>
                            </a>
                         --}}
-                            <a href="#">
+                            <a href="{{URL::action('apo_Rendicion_AporteController@show', $ren->Id_Rendicion)}}">
                                  <button class="btn btn-info">Detalles</button>
                             </a>
                             {{--   

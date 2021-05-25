@@ -64,6 +64,13 @@ class apo_AporteController extends Controller
                         ->orderby('Fecha_Aporte','desc')
                         ->get();
 
+                        if (empty($afiliado_cabezera->Id_Legajo)){
+
+                            $query="";                        
+                            return back()->with('msj', 'El afiliado con cuenta con aporte');
+
+                        }
+
                         return view('constancia\aporte.show', ["afiliado"=>$afiliado
                         , "afiliado_constancia"=>$afiliado_constancia
                         , "afiliado_cabezera"=>$afiliado_cabezera]);

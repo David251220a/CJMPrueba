@@ -3,6 +3,8 @@
 @section('contenido')
 
 
+@php  $total_Salario = 0 @endphp
+@php  $total_Bonificacion = 0 @endphp
 @php  $total_Aporte_Salario = 0 @endphp
 @php  $total_Aporte_Bonificacion = 0 @endphp
 @php  $totalPrimeraAsif = 0 @endphp
@@ -14,6 +16,8 @@
 
 @foreach ($rendicion as $ren)
 
+    @php $total_Salario += $ren->Salario  @endphp
+    @php $total_Bonificacion += $ren->Salario_Bonificacion  @endphp
     @php $total_Aporte_Salario += $ren->Aporte_Salario  @endphp
     @php $total_Aporte_Bonificacion += $ren->Aporte_Salario_Bonificacion  @endphp
     @php $totalDiferenciaAsif += $ren->Diferencia_Asignacion  @endphp
@@ -123,6 +127,29 @@
 
             <div class="form-group">
 
+                <label for="total_salario" >Total Salario </label>
+                <input style="text-align:right;" type="text" name="total_salario" value="{{number_format($total_Salario, 0, ".", ".")}}" class="form-control" readonly >
+
+            </div>
+            
+        </div>
+
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
+
+            <div class="form-group">
+
+                <label for="total_bonificacion" >Total Bonificacion </label>
+                <input style="text-align:right;" type="text" name="total_bonificacion" value="{{number_format($total_Bonificacion, 0, ".", ".")}}" class="form-control" readonly >
+
+            </div>
+            
+        </div>
+
+
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
+
+            <div class="form-group">
+
                 <label for="total_aporte" >Total Aporte Salario </label>
                 <input style="text-align:right;" type="text" name="total_aporte" value="{{number_format($total_Aporte_Salario, 0, ".", ".")}}" class="form-control" readonly >
 
@@ -134,8 +161,8 @@
 
             <div class="form-group">
 
-                <label for="total_aporte" >Total Aporte Bonif. </label>
-                <input style="text-align:right;" type="text" name="total_aporte" value="{{number_format($total_Aporte_Bonificacion, 0, ".", ".")}}" class="form-control" readonly >
+                <label for="total_aporte_bonificacion" >Total Aporte Bonif. </label>
+                <input style="text-align:right;" type="text" name="total_aporte_bonificacion" value="{{number_format($total_Aporte_Bonificacion, 0, ".", ".")}}" class="form-control" readonly >
 
             </div>
             
@@ -187,14 +214,15 @@
         </div>
 
     </div>
-    
-    <div class="rows">
+        
+
+    <div class="rows">        
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
             <div class="table-responsive">
 
-                <table class="table table-striped table-bordered table-condensed table-hover">
+                <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
 
                     {{-- Cabecera de la tabla --}}
                     
@@ -218,17 +246,17 @@
                         $cont = 0;
                         @endphp
                         @foreach ($rendicion as $ren)
-                            <tr class="select" id="fila{{$cont}}" >
-                                <td hidden><input type="hidden" id="idpersona" name="idpersona[]" value="{{$ren->Id_Afiliado_Institucion}}" > </td>
-                                <td style="text-align:right;"><input style="text-align:right;" type="text" id="cedula" name="cedula[]" value="{{$ren->Documento}}" readonly></td>
-                                <td style="text-align:right;"><input style="text-align:right;" type="text" id="nombre" name="nombre_apellido[]" value="{{$ren->Nombre}} , {{$ren->Apellido}}" readonly></td>                                                        
-                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="salario" name="salario[]" value="{{$ren->Salario}}" readonly></td>
-                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="salario_bonificacion" name="salario_bonificacion[]" value="{{$ren->Salario_Bonificacion}}" readonly></td>
-                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="aporte_salario" name="aporte_salario[]" value="{{$ren->Aporte_Salario}}" readonly></td>
-                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="aporte_bonificacion" name="aporte_bonificacion[]" value="{{$ren->Aporte_Salario_Bonificacion}}" readonly></td>
-                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="primera_asig" name="primera_asig[]"  value="{{$ren->Primera_Asignacion}}" readonly></td>
-                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="diferencia_asig" name="diferencia_asig[]"  value="{{$ren->Diferencia_Asignacion}}" readonly></td>
-                                <td style="text-align:right;"><input style="text-align:right;" type="number" id="rsa" name="rsa[]" value="{{$ren->RSA}}" readonly></td>
+                            <tr class="select" name="fila[]" id="fila{{$cont}}" >
+                                <td hidden><input type="hidden" value="{{$ren->Id_Afiliado_Institucion}}" > </td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="text" value="{{$ren->Documento}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="text" value="{{$ren->Nombre}} , {{$ren->Apellido}}" readonly></td>                                                        
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" value="{{$ren->Salario}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" name="salario_bonificacion[]" value="{{$ren->Salario_Bonificacion}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" value="{{$ren->Aporte_Salario}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" value="{{$ren->Aporte_Salario_Bonificacion}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" value="{{$ren->Primera_Asignacion}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" value="{{$ren->Diferencia_Asignacion}}" readonly></td>
+                                <td style="text-align:right;"><input style="text-align:right;" type="number" value="{{$ren->RSA}}" readonly></td>
                                 
                             </tr>
                             @php
@@ -239,8 +267,67 @@
                     </tbody>
                     <div class="col-md-12 text-center">
                         <ul class="pagination pagination-lg pager" id="developer_page"></ul>
-                        </div>
+                    </div>
                     
+                </table>
+
+            </div>
+            
+
+        </div>
+
+    </div>
+
+    <div class="rows">        
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <div class="table-responsive">
+
+                <table id="detalles1" class="table table-striped table-bordered table-condensed table-hover">
+
+                    {{-- Cabecera de la tabla --}}
+                    
+                    <thead style="background-color:#A9D0F5">
+
+                        <th  hidden></th>
+                        <th hidden></th>
+                        <th hidden></th>
+                        <th hidden></th>
+                        <th hidden></th>                        
+                        <th hidden></th>
+                        <th hidden></th>
+                        <th hidden></th>
+                        <th hidden></th>
+                        <th hidden></th>                      
+
+                    </thead>                    
+                    
+                    <tbody>
+                        @php
+                        $cont1= 0;
+                        @endphp
+                        @foreach ($rendicion as $re)
+                            <tr class="select" name="fila[]" id="fila{{$cont1}}" >
+                                <td hidden><input type="hidden" id="id_afiliado_institucion" name="id_afiliado_institucion[]" value="{{$re->Id_Afiliado_Institucion}}" > </td>
+                                <td hidden style="text-align:right;"><input style="text-align:right;" type="text" id="cedula" name="cedula[]" value="{{$re->Documento}}" readonly></td>
+                                <td hidden style="text-align:right;"><input style="text-align:right;" type="text" id="nombre" name="nombre_apellido[]" value="{{$re->Nombre}} , {{$re->Apellido}}" readonly></td>                                                        
+                                <td hidden style="text-align:right;"><input style="text-align:right;" type="number" id="salario" name="salario[]" value="{{$re->Salario}}" readonly></td>
+                                <td hidden style="text-align:right;"><input style="text-align:right;" type="number" id="salario_bonificacion" name="salario_bonificacion[]" value="{{$re->Salario_Bonificacion}}" readonly></td>
+                                <td hidden style="text-align:right;"><input style="text-align:right;" type="number" id="aporte_salario" name="aporte_salario[]" value="{{$re->Aporte_Salario}}" readonly></td>
+                                <td hidden style="text-align:right;"><input style="text-align:right;" type="number" id="aporte_bonificacion" name="aporte_bonificacion[]" value="{{$re->Aporte_Salario_Bonificacion}}" readonly></td>
+                                <td hidden style="text-align:right;"><input style="text-align:right;" type="number" id="primera_asig" name="primera_asig[]"  value="{{$re->Primera_Asignacion}}" readonly></td>
+                                <td hidden style="text-align:right;"><input style="text-align:right;" type="number" id="diferencia_asig" name="diferencia_asig[]"  value="{{$re->Diferencia_Asignacion}}" readonly></td>
+                                <td hidden style="text-align:right;"><input style="text-align:right;" type="number" id="rsa" name="rsa[]" value="{{$re->RSA}}" readonly></td>
+                                
+                            </tr>
+                            @php
+                            $cont1++;
+                            @endphp
+                            <input id="cont" name="cont" value="{{$cont1}}" type="hidden"></td>
+                        @endforeach
+                    </tbody>
+
                 </table>
 
             </div>
@@ -255,16 +342,38 @@
     @push('scripts')
 
     <script type="text/javascript">
-    
+            
         $(document).ready(function() {
-            $('#developers').pageMe({
-                pagerSelector: '#developer_page',
-                showPrevNext: true,
-                hidePageNumbers: false,
-                perPage: 1
-            });
+            var dataTable = $('#detalles').dataTable({
+                //$("#detalles_.dataTables_filter").hide();                
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",                    
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+                        
+            }); 
+
+            //$(".dataTables_filter").hide();
+            //$("#searchbox").keyup(function() {
+            //    dataTable.fnFilter(this.value);
+            //});    
         });
- 
 
     </script>
 

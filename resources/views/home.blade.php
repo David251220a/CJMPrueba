@@ -1,1 +1,1 @@
-<meta http-equiv="refresh" content="0; afiliado/persona">
+<meta http-equiv="refresh" content="0; inicio/inicio">

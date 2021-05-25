@@ -1,7 +1,7 @@
 <div class="modal fade modal-slide-in-right" aria-hidden="true"
-    role="dialog" tabindex="-1" id="modal-delete-{{$afi->Id_Afiliado_Insitucion}}">
+    role="dialog" tabindex="-1" id="modal-delete-{{$afi->Id_Afiliado_Institucion}}">
 
-    {!! Form::open(array('action'=> array('apo_Afiliado_Inst_Munic_Inactivo_Controller@destroy', $afi->Id_Afiliado_Insitucion), 'method'=>'delete' ) ) !!}
+    {!! Form::open(array('action'=> array('apo_Afiliado_Inst_Munic_Inactivo_Controller@destroy', $afi->Id_Afiliado_Institucion), 'method'=>'delete' ) ) !!}
 
     <div class="modal-dialog">
         

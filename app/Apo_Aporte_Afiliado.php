@@ -11,7 +11,7 @@ class Apo_Aporte_Afiliado extends Model
 
     //protected $table = 'categoria';
 
-    //public $timestamps= false;
+    public $timestamps= false;
 
     //protected $primarykey='Id_Legajo';
 

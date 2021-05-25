@@ -48,6 +48,12 @@ class InicioController extends Controller
 
             }
             
+            if($id_rol == 1 || $id_rol == 6 ){
+                 
+                return redirect('afiliado/capacidad');
+
+            }
+            
 
         }
 

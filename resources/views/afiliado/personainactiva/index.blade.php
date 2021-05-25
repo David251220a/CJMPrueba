@@ -41,7 +41,7 @@
                         <td>{{$afi->Apellido}}</td>                    
                         <td>{{$afi->Celular}}</td>                        
                         <td>                                                       
-                        <a href="" data-target="#modal-delete-{{$afi->Id_Afiliado_Insitucion}}" data-toggle="modal">
+                        <a href="" data-target="#modal-delete-{{$afi->Id_Afiliado_Institucion}}" data-toggle="modal">
                             <button class="btn btn-success">Activar</button>
                         </a>
                            

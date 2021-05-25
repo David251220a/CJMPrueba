@@ -38,15 +38,23 @@ Route::get('/{slug?}', 'HomeController@index')->name('home');
 
 Route::resource('afiliado/persona', 'apo_Afiliado_Inst_MunicController');
 Route::resource('afiliado/personainactiva', 'apo_Afiliado_Inst_Munic_Inactivo_Controller');
+Route::resource('afiliado/capacidad', 'apo_Afiliado_CapacidadController');
+
 Route::resource('planillamensual/generar', 'PlanillaMensualController');
 Route::resource('planillamensual/importar', 'PlanillaMensualImportController');
 Route::resource('planillamensual/historico', 'PlanillaHistoricoController');
+
 Route::resource('prestamoplanilla/generar', 'PrestamoPlanillaController');
+
 Route::resource('inicio/inicio', 'InicioController');
+
 Route::resource('constancia/aporte', 'apo_AporteController');
+
 Route::resource('resumen/aporte', 'apo_Aporte_ResumenController');
+
 Route::resource('constancia/prestamo', 'pre_Constancia_PrestamoController');
 Route::resource('rendicionaporte/generar', 'apo_Rendicion_AporteController');
+Route::resource('rendicionaporte/importar', 'apo_Rendicion_Aporte_ImportarController');
 Route::resource('ayuda/index', 'AyudaController');
 
 
@@ -63,3 +71,4 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout' );
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
